@@ -1,0 +1,71 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Report {{ report.id }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+              </ol>
+            </nav>
+          </div>
+          {% if object.writer == user %}
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'report-update' report.id %}" class="btn btn-sm btn-neutral">Update Report</a> 
+            <a href="{% url 'report-delete' report.id %}" class="btn btn-sm btn-neutral mt-1">Delete Report</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Report Detail</h3>
+            <hr>
+            <ul>
+              <li><b>Title:</b> {{ report.title }}</li>
+              <li><b>Class:</b> {{ report.report_class }}</li>
+              <li><b>Summary:</b> {{ report.summary }}</li>
+              <li><b>Body:</b> {{ report.body|safe }}</li>
+              <li><b>Recommendation:</b> {{ report.recommendation }}</li>
+              <li><b>Date Submitted:</b> {{ report.date_created | date:'F d, Y' }}</li>
+              <li><b>Time Submitted:</b> {{ report.date_created | date:'H:i A' }}</li>
+              <li><b>Time Updated:</b> {{ report.date_updated | date:'H:i A' }}</li>
+              <li><b>Status:</b> 
+                {% if report.status == 'pending' %}
+                  <span style="color: yellow;">{{ report.status }}</span>
+                {% elif report.status == 'approved' %}
+                  <span style="color: green">{{ report.status }}</span>
+                {% elif report.status == 'unapproved' %}
+                  <span style="color: red">{{ report.status }}</span>
+                {% endif %}
+              </li>
+              <li><b>Staff:</b> {{ report.writer }}</li>
+            </ul> 
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "includes/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

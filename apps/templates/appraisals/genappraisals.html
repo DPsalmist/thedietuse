@@ -1,0 +1,198 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Staff</a></li>
+                <li class="breadcrumb-item active" aria-current="page">General Appraisals</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'create-genappraisal' %}" class="btn btn-sm btn-neutral">Create New General Appraisal</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+
+     <div class="row">
+      <div class="col">
+        <div class="card bg-default shadow">
+                <!-- <div class="row align-items-center card-header border-0">
+                  <div class=" col-8">
+                    <h3 class="mb-0">Job Appraisal</h3>
+                  </div>
+                  <div class=" col-4 text-right">
+                    <a href="#!" class="btn btn-sm btn-primary"></a>
+                  </div>
+                </div> -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Overview</h3>
+            <hr>
+            <p>This appraisal is to grade the staff on a general performance. <br>
+             The ratings goes thus: (Poor:0-29, Fair:30-49, Average:50-59, Good:60-74, Excellent:75-90, Disctinction:91-100) <br>
+             <b style="color:cornflowerblue;">NB:</b> Grades are based on staff job performance as observed/received/recorded.  
+           </p>
+          </div>
+
+
+          <div class="table-responsive">
+            <table class="table align-items-center table-light table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Staff</th>
+                  <th scope="col" class="sort" data-sort="name">Week</th>
+                  <th scope="col" class="sort" data-sort="name">Term</th>
+                  <th scope="col" class="sort" data-sort="name">Year</th>
+
+                  <!-- <th scope="col" class="sort" data-sort="name">Punctuality to school</th>
+                  <th scope="col" class="sort" data-sort="budget">Punctuality to class</th>
+                  <th scope="col" class="sort" data-sort="status">Neatness & appearance</th>
+                  <th scope="col" class="sort" data-sort="status">Respect for constituted authority</th>
+                  <th scope="col" class="sort" data-sort="status">Adherence to code of conduct</th>
+                  <th scope="col" class="sort" data-sort="status">Initiative</th>
+                  <th scope="col" class="sort" data-sort="status">Sense of responsibility</th>
+                  <th scope="col" class="sort" data-sort="status">Courtesy to parents and supervisors</th>
+                  <th scope="col" class="sort" data-sort="status">Acceptance to correction</th>
+                  <th scope="col" class="sort" data-sort="status">Team bonding capacity</th>
+                  <th scope="col" class="sort" data-sort="status">Attendance and participation in staff meeting</th>
+                  <th scope="col" class="sort" data-sort="status">Adherence to school organogram</th>
+                  <th scope="col" class="sort" data-sort="status">Involvement in extra curricular activities:</th> -->
+
+                  <th scope="col" class="sort" data-sort="status">HOD Remarks</th>
+                  <th scope="col" class="sort" data-sort="status">Detail</th>
+                </tr>
+              </thead>
+
+              <tbody class="list table-dark">
+                {% for g in gens %}
+                <tr>
+                  <th scope="row">
+                    <div class="avatar-group media align-items-center">
+                      <div class="media-body">
+                          <span class="name mb-0 text-sm">{{ g.staff_name }}</span>
+                      </div>
+
+                      <!-- <a href="{% url 'genappraisal-detail' g.id %}" class="avatar avatar-sm rounded-circle media-body mr-2" data-toggle="tooltip" data-original-title="{{ g.staff_name }}">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/team-1.jpg">
+                      </a> -->
+                    </div>
+                  </th>
+                   <td class="budget">
+                    {{ g.week }}
+                  </td>
+                   <td class="budget">
+                    {{ g.term }}
+                  </td>
+                   <td class="budget">
+                    {{ g.year }}
+                  </td>
+
+                  <!-- <td class="budget">
+                    {{ g.punctuality_to_school }}
+                  </td>
+                  <td class="budget">
+                    {{ g.punctuality_to_class }}
+                  </td>
+                  <td class="budget">
+                    {{ g.neatness_and_appearance }}
+                  </td>
+                   <td class="budget">
+                    {{ g.respect_for_constituted_authority }}
+                  </td>
+                   <td class="budget">
+                    {{ g.adherence_to_code_of_conduct }}
+                  </td>
+                   <td class="budget">
+                    {{ g.initiative }}
+                  </td>
+                   <td class="budget">
+                    {{ g.sense_of_responsibility }}
+                  </td>
+                   <td class="budget">
+                    {{ g.courtesy_to_parents_and_supervisors }}
+                  </td>
+                   <td class="budget">
+                    {{ g.acceptance_to_correction }}
+                  </td>
+                  <td class="budget">
+                    {{ g.team_bonding_capacity }}
+                  </td>
+                  <td class="budget">
+                    {{ g.attendance_and_participation_in_staff_meeting }}
+                  </td>
+                  <td class="budget">
+                    {{ g.adherence_to_school_organogram }}
+                  </td>
+                  <td class="budget">
+                    {{ g.involvement_in_extra_curricular_activities }}
+                  </td> -->
+
+                  <td class="budget">
+                    {{ g.hod_remarks }}
+                  </td>
+                  <td class="budget">
+                    <a style="color: #fff;" href="{% url 'genappraisal-detail' g.id %}">View Detail</a>
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              
+
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+          <!-- Card footer -->
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+        
+    {% include "includes/footer.html" %}
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,172 @@
+{% block content %}
+<h1>Appraisals Page</h1>
+{% endblock content %}
+
+ <td>
+                    <span class="badge badge-dot mr-4">
+                      {% if project.status == 'pending' %}
+                        <i class="bg-warning"></i>
+                        <span class="status">{{ project.status }}</span>
+                      {% elif project.status == 'approved' %}
+                        <i class="bg-success"></i>
+                        <span class="status">{{ project.status }}</span>
+                      {% elif project.status == 'unapproved' %}
+                        <i class="bg-danger"></i>
+                        <span class="status">{{ project.status }}</span>
+                      {% endif %}
+                    </span>
+                  </td>
+
+
+
+ {% for i in jobs %}
+                <tr>
+                   <th scope="row">
+                    <div class="media align-items-center">
+                      <!-- <a href="{% url 'project-detail' project.id %}" class="avatar rounded-circle mr-3">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">
+                      </a> -->                      
+                      <a href="{% url 'jobappraisal-detail' i.id %}">
+                        <div class="media-body">
+                          <span style="color:mintcream;" class="name mb-0 text-sm">{{ i.staff_name }}</span>
+                        </div>
+                      </a>
+                    </div>
+                  </th>
+
+                  <td class="budget">
+                    {{ i.week }}
+                  </td>
+                  <td class="budget">
+                    {{ i.term }}
+                  </td>
+                  <td class="budget">
+                    {{ i.year }}
+                  </td>
+                  
+                  <td class="budget">
+                    {{ i.up_to_date_lesson_notes }}
+                  </td>
+                  <td class="budget">
+                    {{ i.class_management_skills }}
+                  </td>
+                  <td class="budget">
+                    {{ i.neatness_and_appearance }}
+                  </td>
+                   <td class="budget">
+                    {{ i.classroom_communication }}
+                  </td>
+                   <td class="budget">
+                    {{ i.time_management }}
+                  </td>
+                   <td class="budget">
+                    {{ i.syllabus_compliance }}
+                  </td>
+                   <td class="budget">
+                    {{ i.teaching_competence }}
+                  </td>
+                   <td class="budget">
+                    {{ i.students_performance_in_subjects_taught }}
+                  </td>
+                   <td class="budget">
+                    {{ i.parents_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.students_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.colleagues_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.resource_management }}
+                  </td>
+                  <td class="budget">
+                    {{ i.knowledge_of_subjects_taught }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_parents }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_students }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_colleagues }}
+                  </td>
+                  <td class="budget">
+                    {{ i.hod_remarks }}
+                  </td>
+
+                  <td>
+                    <div class="avatar-group">
+                      <a href="#" class="avatar avatar-sm rounded-circle" data-toggle="tooltip" data-original-title="{{ i.staff_name }}">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/team-1.jpg">
+                      </a>
+                    </div>
+                  </td>
+
+                  
+                </tr>
+                {% endfor %}
+
+
+<div class="row">
+      <div class="col">
+        <div class="card bg-default shadow">
+          <div class="card-header bg-transparent border-0">
+            <h3 class="text-white mb-0">General Appraisal</h3>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table align-items-center table-dark table-flush" >
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Staff</th>
+                  <th scope="col" class="sort" data-sort="name">Punctuality to school</th>
+                  <th scope="col" class="sort" data-sort="budget">Punctuality to class</th>
+                  <th scope="col" class="sort" data-sort="status">Neatness/Appearance</th>
+                  <th scope="col" class="sort" data-sort="status">Respect for constituted authority</th>
+                  <th scope="col" class="sort" data-sort="status">Adherence to code of conduct</th>
+                  <th scope="col" class="sort" data-sort="status">Initiative</th>
+                  <th scope="col" class="sort" data-sort="status">Sense of responsibility</th>
+                  <th scope="col" class="sort" data-sort="status">Courtesy to parents/supervisors</th>
+                  <th scope="col" class="sort" data-sort="status">Acceptance to correction</th>
+                  <th scope="col" class="sort" data-sort="status">Team playing capacity</th>
+                  <th scope="col" class="sort" data-sort="status">Attendance/Participation in staff meeting</th>
+                  <th scope="col" class="sort" data-sort="status">Adherence to school organogram</th>
+                  <th scope="col" class="sort" data-sort="status">Involvement in school extra-curricular activities</th>
+                  <th scope="col" class="sort" data-sort="name">Week</th>
+                  <th scope="col" class="sort" data-sort="name">Term</th>
+                  <th scope="col" class="sort" data-sort="name">Year</th>
+                  <th scope="col" class="sort" data-sort="status">HOD Remarks</th>
+            </tr>
+              </thead>
+
+
+               <tbody class="list table-white">
+                {% for j in projects %}
+                <tr>
+                   <th scope="row">
+                    <div class="media align-items-center">
+                      <!-- <a href="{% url 'project-detail' project.id %}" class="avatar rounded-circle mr-3">
+                        <img alt="Image placeholder" src="/static/assets/img/theme/bootstrap.jpg">
+                      </a> -->                      
+                      <a href="#">
+                        <div class="media-body">
+                          <span style="color:purple;" class="name mb-0 text-sm">  {{ j.staff_name }}</span>
+                        </div>
+                      </a>
+                    </div>
+                  </th>
+                  <td class="budget">
+                    {{ j.title }}
+                  </td>
+                </tr>           
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+               

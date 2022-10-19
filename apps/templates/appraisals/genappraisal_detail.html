@@ -1,0 +1,91 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i>  Staff</a></li>
+                <li class="breadcrumb-item"><a href="#">Appraisal {{ generalappraisal.id }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+              </ol>
+            </nav>
+          </div>
+          {% if object.staff_name == user %}
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'genappraisal-update' generalappraisal.id %}" class="btn btn-sm btn-neutral">Edit Appraisal</a> 
+            <a href="{% url 'genappraisal-delete' generalappraisal.id %}" class="btn btn-sm btn-neutral mt-1">Delete Appraisal</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+             <div class="row align-items-center ">
+                <div class=" col-8">
+                  <h4 class="mb-0">Appraisal Detail for Week {{ generalappraisal.week }} ({{ generalappraisal.term }}, {{ generalappraisal.year }})</h4>
+                </div>
+                <div class=" col-4 text-right">
+                  <a href=""><h4 class=""> {{ generalappraisal.staff_name }}</h4></a>
+                </div>
+              </div>
+            <hr>
+            <ul>
+              <li><b>Punctuality to school:</b> {{ generalappraisal.punctuality_to_school }}</li>
+              <li><b>Punctuality to class:</b> {{ generalappraisal.punctuality_to_class }}</li>
+              <li><b>Neatness & appearance:</b> {{ generalappraisal.neatness_and_appearance }}</li>
+              <li><b>Respect for constituted authority:</b> {{ generalappraisal.respect_for_constituted_authority }}</li>
+              <li><b>Adherence to code of conduct:</b> {{ generalappraisal.adherence_to_code_of_conduct }}</li>
+              <li><b>Initiative:</b> {{ generalappraisal.initiative }}</li>
+              <li><b>Sense of responsibility:</b> {{ generalappraisal.sense_of_responsibility }}</li>
+              <li><b>Courtesy to parents and supervisors:</b> {{ generalappraisal.courtesy_to_parents_and_supervisors }}</li>
+              <li><b>Acceptance to correction:</b> {{ generalappraisal.acceptance_to_correction }}</li>
+              <li><b>Team bonding capacity:</b> {{ generalappraisal.team_bonding_capacity }}</li>
+              <li><b>Attendance and participation in staff meeting:</b> {{ generalappraisal.attendance_and_participation_in_staff_meeting }}</li>
+              <li><b>Adherence to school organogram:</b> {{ generalappraisal.adherence_to_school_organogram }}</li>
+              <li><b>Involvement in extra curricular activities::</b> {{ generalappraisal.involvement_in_extra_curricular_activities }}</li>
+              <li><b>Avg Rating:</b> 
+
+                {% if this_appraisal_rating in distinction %}
+                  <span style="color: gold;">{{ generalappraisal.avg_general_appraisal_performance|floatformat:"0" }}%</span>
+                {% elif this_appraisal_rating in excellent %}
+                  <span style="color: yellow">{{ generalappraisal.avg_general_appraisal_performance }}%</span>
+                {% elif this_appraisal_rating in good %}
+                  <span style="color: lightseagreen;">{{ generalappraisal.avg_general_appraisal_performance }}%</span>
+                {% elif this_appraisal_rating in avg %}
+                  <span style="color: blue">{{ generalappraisal.avg_general_appraisal_performance }}%</span>
+                {% elif this_appraisal_rating in fair %}
+                  <span style="color: orange">{{ generalappraisal.avg_general_appraisal_performance }}%</span>
+                {% elif this_appraisal_rating in poor %}
+                  <span style="color: red">{{ generalappraisal.avg_general_appraisal_performance }}%</span>
+                {% endif %}
+
+              </li>
+              <li><b>Courtesy to parents and supervisors:</b> {{ generalappraisal.hod_remarks }}</li>
+            </ul> 
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "includes/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

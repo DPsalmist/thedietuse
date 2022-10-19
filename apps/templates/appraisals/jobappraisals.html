@@ -1,0 +1,199 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Staff</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Job Appraisals</li>
+              </ol>
+            </nav>
+          </div>
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'create-jobappraisal' %}" class="btn btn-sm btn-neutral">Create New Job Appraisal</a>          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+
+     <div class="row">
+      <div class="col">
+        <div class="card bg-default shadow">
+          <div class="card-header border-0">
+            <h3 class="mb-0">Overview</h3> 
+            <hr>
+            <p>This appraisal is to grade the staff on the job performance and related activities. <br>
+             The ratings goes thus: (Poor:0-29, Fair:30-49, Average:50-59, Good:60-74, Excellent:75-90, Disctinction:91-100) <br>
+             <b style="color:cornflowerblue;">NB:</b> Grades are based on staff job performance as observed/received/recorded.  
+           </p>
+          </div>
+
+           <div class="table-responsive">
+            <table class="table align-items-center table-light table-flush">
+              <thead class="thead-light">
+                <tr>
+                  <th scope="col" class="sort" data-sort="name">Staff</th>
+                  <th scope="col" class="sort" data-sort="name">Week</th>
+                  <th scope="col" class="sort" data-sort="name">Term</th>
+                  <th scope="col" class="sort" data-sort="name">Year</th>
+
+<!--                   <th scope="col" class="sort" data-sort="name">Up-to-date lesson notes</th>
+                  <th scope="col" class="sort" data-sort="budget">Class management skills</th>
+                  <th scope="col" class="sort" data-sort="status">Neatness & appearance</th>
+                  <th scope="col" class="sort" data-sort="status">Classroom communication</th>
+                  <th scope="col" class="sort" data-sort="status">Time management</th>
+                  <th scope="col" class="sort" data-sort="status">Syllabus compliance</th>
+                  <th scope="col" class="sort" data-sort="status">Teaching competence</th>
+                  <th scope="col" class="sort" data-sort="status">Students performance in subjects taught</th>
+                  <th scope="col" class="sort" data-sort="status">Parents relationship</th>
+                  <th scope="col" class="sort" data-sort="status">Students relationship</th>
+                  <th scope="col" class="sort" data-sort="status">Colleagues relationship</th>
+                  <th scope="col" class="sort" data-sort="status">Resource management</th>
+                  <th scope="col" class="sort" data-sort="status">Knowledge of subjects taught</th>
+                  <th scope="col" class="sort" data-sort="status">Comments by parents</th>
+                  <th scope="col" class="sort" data-sort="status">Comments by students</th>
+                  <th scope="col" class="sort" data-sort="status">Comments by colleagues</th>   -->
+
+                  <th scope="col" class="sort" data-sort="status">HOD Remarks</th>
+                  <th scope="col" class="sort" data-sort="status">Detail</th>
+                </tr>
+              </thead>
+
+              <tbody class="list table-dark">
+                {% for i in jobs %}
+                <tr>
+                  <th scope="row">
+                    <div class="avatar-group media align-items-center">
+                      <div class="media-body">
+                    <!--  <img alt="Image placeholder" style="width: 30px; border-radius: 50%;" src="/static/assets/img/theme/team-1.jpg">  -->
+                        <span class="name mb-0 text-sm">{{ i.staff_name }}</span>
+                        </div>
+                    </div>
+                  </th>
+                   <td class="budget">
+                    {{ i.week }}
+                  </td>
+                   <td class="budget">
+                    {{ i.term }}
+                  </td>
+                   <td class="budget">
+                    {{ i.year }}
+                  </td>
+
+                  <!--  <td class="budget">
+                    {{ i.up_to_date_lesson_notes }}
+                  </td>
+                  <td class="budget">
+                    {{ i.class_management_skills }}
+                  </td>
+                  <td class="budget">
+                    {{ i.neatness_and_appearance }}
+                  </td>
+                   <td class="budget">
+                    {{ i.classroom_communication }}
+                  </td>
+                   <td class="budget">
+                    {{ i.time_management }}
+                  </td>
+                   <td class="budget">
+                    {{ i.syllabus_compliance }}
+                  </td>
+                   <td class="budget">
+                    {{ i.teaching_competence }}
+                  </td>
+                   <td class="budget">
+                    {{ i.students_performance_in_subjects_taught }}
+                  </td>
+                   <td class="budget">
+                    {{ i.parents_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.students_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.colleagues_relationship }}
+                  </td>
+                  <td class="budget">
+                    {{ i.resource_management }}
+                  </td>
+                  <td class="budget">
+                    {{ i.knowledge_of_subjects_taught }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_parents }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_students }}
+                  </td>
+                  <td class="budget">
+                    {{ i.comments_by_colleagues }}
+                  </td>
+ -->
+                  <td class="budget">
+                    {{ i.hod_remarks }}
+                  </td>
+                  <td class="budget">
+                    <a style="color: #fff;" href="{% url 'jobappraisal-detail' i.id %}">View Detail</a>
+                  </td>
+                </tr>
+
+                {% endfor %}
+              </tbody>
+              
+
+
+            </table>
+          </div>
+
+        </div>
+      </div>
+    </div>
+         
+
+          <!-- Card footer -->
+          <div class="card-footer py-4">
+            <nav aria-label="...">
+              <ul class="pagination justify-content-end mb-0">
+                <li class="page-item disabled">
+                  <a class="page-link" href="#" tabindex="-1">
+                    <i class="fas fa-angle-left"></i>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                </li>
+                <li class="page-item active">
+                  <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                  <a class="page-link" href="#">
+                    <i class="fas fa-angle-right"></i>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+
+        
+    {% include "includes/footer.html" %}
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}

@@ -1,0 +1,130 @@
+<nav class="sidenav navbar navbar-vertical  fixed-left  navbar-expand-xs navbar-light bg-white" id="sidenav-main">
+  <div class="scrollbar-inner">
+    <!-- Brand -->
+    <div class="sidenav-header  align-items-center">
+      <a class="navbar-brand" href="#">
+        <h1 class="navbar-brand-img">Dazaryt</h1> 
+        <!-- <img src="/static/assets/img/brand/blue.png" class="navbar-brand-img" alt="Argon Design - Jinja Template Logo."> -->
+      </a>
+    </div>
+    <div class="navbar-inner">
+      <!-- Collapse -->
+      <div class="collapse navbar-collapse" id="sidenav-collapse-main">
+        <!-- Nav items -->
+        <ul class="navbar-nav">
+           {% if request.user.account_type == 'board member' %}
+          <li class="nav-item">
+            <a class="nav-link {% if 'index' in segment %} active {% endif %}" href="/">
+              <i class="ni ni-tv-2 text-primary"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Profile</span>
+            </a>
+          </li>
+           <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/appraisals">
+              <i class="ni ni-trophy text-purple"></i>
+              <span class="nav-link-text">General Appraisals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/jobappraisals">
+              <i class="ni ni-badge text-orange"></i>
+              <span class="nav-link-text">Job Appraisals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/jobappraisals">
+              <i class="ni ni-tag text-blue"></i>
+              <span class="nav-link-text">Add Task</span>
+            </a>
+          </li>
+
+          {% elif request.user.account_type == 'management' %}
+          <li class="nav-item">
+            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/appraisals">
+              <i class="ni ni-trophy text-purple"></i>
+              <span class="nav-link-text">General Appraisals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/jobappraisals">
+              <i class="ni ni-badge text-orange"></i>
+              <span class="nav-link-text">Job Appraisals</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'reports' in segment %} active {% endif %}" href="/reports">
+              <i class="ni ni-single-copy-04 text-blue"></i>
+              <span class="nav-link-text">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'projects' in segment %} active {% endif %}" href="/projects">
+              <i class="ni ni-app text-green"></i>
+              <span class="nav-link-text">Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'appraisals' in segment %} active {% endif %}" href="/jobappraisals">
+              <i class="ni ni-tag text-blue"></i>
+              <span class="nav-link-text">Add Task</span>
+            </a>
+          </li>
+          {% else %}
+          <li class="nav-item">
+            <a class="nav-link {% if 'profile' in segment %} active {% endif %}" href="/profile">
+              <i class="ni ni-single-02 text-yellow"></i>
+              <span class="nav-link-text">Profile</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'reports' in segment %} active {% endif %}" href="/reports">
+              <i class="ni ni-single-copy-04 text-blue"></i>
+              <span class="nav-link-text">Reports</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'projects' in segment %} active {% endif %}" href="/projects">
+              <i class="ni ni-app text-green"></i>
+              <span class="nav-link-text">Projects</span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link {% if 'tasks' in segment %} active {% endif %}" href="/reports">
+              <i class="ni ni-tag text-orange"></i>
+              <span class="nav-link-text">View Tasks</span>
+            </a>
+          </li>
+          {% endif %} 
+        </ul>
+        
+        <!-- Divider -->
+        <hr class="my-3">    
+        <!-- Heading -->
+        
+        <!-- Navigation -->
+       <ul class="navbar-nav mb-md-3">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'logout' %}">
+              <i class="ni ni-user-run text-red"></i>
+              <span class="nav-link-text">Logout</span>
+            </a>
+          </li>  
+
+        </ul> 
+      </div>
+    </div>
+  </div>
+</nav>

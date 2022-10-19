@@ -1,0 +1,72 @@
+{% extends 'layouts/base.html' %}
+
+{% block title %} Tables {% endblock title %}
+
+{% block content %}
+
+  <div class="header bg-primary pb-6">
+    <div class="container-fluid">
+      <div class="header-body">
+        <div class="row align-items-center py-4">
+          <div class="col-lg-6 col-7">
+            <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
+              <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
+                <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
+                <li class="breadcrumb-item"><a href="#">Project {{ project.id }}</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Detail</li>
+              </ol>
+            </nav>
+          </div>
+          {% if object.author == user %}
+          <div class="col-lg-6 col-5 text-right">
+            <a href="{% url 'project-update' project.id %}" class="btn btn-sm btn-neutral">Update Project</a> 
+            <a href="{% url 'project-delete' project.id %}" class="btn btn-sm btn-neutral mt-1">Delete Project</a>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Page content -->
+  <div class="container-fluid mt--6">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <!-- Card header -->
+          <div class="card-header border-0">
+            <h3 class="mb-0">Projectproject Detail</h3>
+            <hr>
+            <ul>
+              <li><b>Title:</b> {{ project.title }}</li>
+              <li><b>Class:</b> {{ project.project_class }}</li>
+              <li><b>Summary:</b> {{ project.description }}</li>
+               <li><b>Budget:</b> {{ project.budget }}<span style="color: green;">NGN</span></li>
+              <li><b>Requirements:</b> {{ project.objective|safe }}</li>
+              <li><b>Objective:</b> {{ project.requirements }}</li>
+              <li><b>Date Submitted:</b> {{ project.date_created | date:'F d, Y' }}</li>
+              <li><b>Time Submitted:</b> {{ project.date_created | date:'H:i A' }}</li>
+              <li><b>Time Updated:</b> {{ project.date_updated | date:'H:i A' }}</li>
+              <li><b>Status:</b> 
+                {% if project.status == 'awaiting approval' %}
+                  <span style="color: brown;">{{ project.status }}</span>
+                {% elif project.status == 'approved' %}project
+                  <span style="color: green">{{ project.status }}</span>
+                {% elif project.status == 'unapproved' %}
+                  <span style="color: red">{{ project.status }}</span>
+                {% endif %}
+              </li>
+              <li><b>Staff:</b> {{ project.author }}</li>
+            </ul> 
+          </div>
+        </div>
+      </div>
+    </div>
+    {% include "includes/footer.html" %}
+
+  </div>
+
+{% endblock content %}
+
+<!-- Specific JS goes HERE --> 
+{% block javascripts %}{% endblock javascripts %}
